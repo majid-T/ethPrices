@@ -4,7 +4,7 @@
   "description": "Get Eth prices from multiple sources and expose as a single json",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "echo \"Starting server\" && node index.js"
   },
   "repository": {
     "type": "git",
