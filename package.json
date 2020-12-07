@@ -1,0 +1,24 @@
+{
+  "name": "ethprices",
+  "version": "1.0.0",
+  "description": "Get Eth prices from multiple sources and expose as a single json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/majid-T/ethPrices.git"
+  },
+  "author": "Majid-T",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/majid-T/ethPrices/issues"
+  },
+  "homepage": "https://github.com/majid-T/ethPrices#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "node-cron": "^2.0.3"
+  }
+}
