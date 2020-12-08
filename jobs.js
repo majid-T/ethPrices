@@ -1,9 +1,23 @@
 const axios = require('axios');
+const fs = require('fs');
 
 const getPrices = async function () {
     const COINGECKO_API = process.env.COINGECKO_API;
     const BINANCE_API = process.env.BINANCE_API;
+    const writeObj = {
+        datetime: new Date().toGMTString(),
+        datetimeNumber: Date.now()
+    }
 
+    let jsonArray = [];
+    fs.readFile('.\\prices\\prices.json', (err, data) => {
+        if (data) {
+            jsonArray = JSON.parse(data);
+            console.log(data.toString())
+        } else {
+            fs.writeFile(".\\prices\\prices.json", "[]", () => console.log("Making new File"))
+        }
+    })
     console.log(`Calling ${COINGECKO_API} for eth price`)
 
     // Get coingecko ETH vs USD price
@@ -15,7 +29,7 @@ const getPrices = async function () {
             time: new Date().toGMTString(),
             platform: "COINGECKO"
         }
-        console.log(obj);
+        writeObj.coinGecko = parseFloat(ethereum.usd).toFixed(2);
     } catch (err) {
         console.log(err);
     }
@@ -30,10 +44,17 @@ const getPrices = async function () {
             time: new Date().toGMTString(),
             platform: "BINANCE"
         }
-        console.log(obj);
+        writeObj.binance = parseFloat(res.data['price']).toFixed(2);
     } catch (err) {
         console.log(err)
     }
+
+    // console.log(`Writing ${writeObj}`)
+    jsonArray.push(writeObj)
+    fs.writeFile(`.\\prices\\prices.json`, JSON.stringify(jsonArray), function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
 }
 
 module.exports.getPrices = getPrices;
