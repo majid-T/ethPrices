@@ -10,7 +10,6 @@
   </div>
 
 ## Todo 
-- make single json file for each day
 - serve json on requests
 - build a UI using react
 
